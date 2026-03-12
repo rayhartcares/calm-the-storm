@@ -1,1 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calm the Storm | Brave Feelings Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+<!-- PASSWORD SCREEN -->
+<div id="screen-password" class="pw-screen">
+  <div class="pw-card">
+    <div class="pw-logo"><span class="pw-icon">⛅</span></div>
+    <h1 class="pw-title">Calm the Storm</h1>
+    <p class="pw-sub">An Anger Reset Lab for Kids</p>
+    <p class="pw-brand">Brave Feelings Lab &nbsp;·&nbsp; Benne Hart</p>
+    <p class="pw-prompt">Enter your access password:</p>
+    <input type="password" id="password-input" class="pw-input" placeholder="Password" autocomplete="current-password" />
+    <button id="password-btn" class="btn-primary">Enter →</button>
+    <p id="password-error" class="pw-error hidden">That password doesn't match. Please try again.</p>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" class="hidden">
+
+  <header id="progress-bar-wrap" class="prog-wrap hidden">
+    <div class="prog-labels">
+      <span id="progress-text">Screen 1 of 30</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="prog-track"><div id="progress-fill" class="prog-fill"></div></div>
+  </header>
+
+  <!-- SCREEN 1 · Welcome -->
+  <section id="screen-1" class="screen hidden" data-screen="1">
+    <div class="screen-inner">
+      <img src="assets/images/screen01.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Welcome to Calm the Storm</h2>
+        <p>Hey there! This is a safe space just for you.</p>
+        <p>Everyone gets angry or frustrated sometimes — even grown-ups. That's completely normal.</p>
+        <p>In this lab you'll learn powerful tools to <strong>notice anger early</strong>, <strong>hit pause</strong>, and <strong>reset</strong> — so anger doesn't take over.</p>
+        <p>Ready? Let's go!</p>
+        <div class="nav-row"><button class="btn-next" onclick="goNext()">Let's Start →</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2 · Meet Alex -->
+  <section id="screen-2" class="screen hidden" data-screen="2">
+    <div class="screen-inner">
+      <img src="assets/images/screen02.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Meet Alex</h2>
+        <p>This is <strong>Alex</strong> — age 9, loves soccer, drawing, and hanging out with friends.</p>
+        <p>Alex is a pretty great kid. But sometimes things happen that make Alex feel really, really upset.</p>
+        <p>We're going to follow Alex through a tough moment — and figure out what to do together.</p>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">Tell Me More →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3 · Frustrating Moment -->
+  <section id="screen-3" class="screen hidden" data-screen="3">
+    <div class="screen-inner">
+      <img src="assets/images/screen03.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Alex's Tough Moment</h2>
+        <p>Today at school, Alex worked really hard on a project. Then another kid knocked it over — and it broke.</p>
+        <p>The other kid laughed. The teacher didn't see it happen.</p>
+        <p>Alex felt something hot and tight rising inside. Hands curled into fists. A loud voice wanted to burst out.</p>
+        <p>Have you ever felt something like that?</p>
+        <div class="choice-grid" id="cg-3">
+          <button class="choice-btn" onclick="pick(this,'felt-like','yes','3')">Yes, totally</button>
+          <button class="choice-btn" onclick="pick(this,'felt-like','sort-of','3')">Sort of</button>
+          <button class="choice-btn" onclick="pick(this,'felt-like','not-really','3')">Not really</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next hidden" id="next-3" onclick="goNext()">Keep Going →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 4 · What Anger Can Feel Like -->
+  <section id="screen-4" class="screen hidden" data-screen="4">
+    <div class="screen-inner">
+      <img src="assets/images/screen04.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>What Anger Can Feel Like</h2>
+        <p>Anger is a real feeling — and it shows up in your body and your thoughts. Some kids describe anger like:</p>
+        <ul class="icon-list">
+          <li>🔥 A fire spreading up from your belly</li>
+          <li>⚡ A bolt of energy with nowhere to go</li>
+          <li>🌊 A wave crashing over you</li>
+          <li>🥁 A drum beating louder and louder in your chest</li>
+        </ul>
+        <p>None of these feelings are bad. Anger is telling you that something matters to you.</p>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I Get It →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 5 · Body Clues -->
+  <section id="screen-5" class="screen hidden" data-screen="5">
+    <div class="screen-inner">
+      <img src="assets/images/screen05.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Notice Your Body Clues</h2>
+        <p>Your body gives you <strong>early warning signs</strong> that anger is building — like a dashboard light. Check the ones you notice in yourself:</p>
+        <div class="check-grid">
+          <label class="chk"><input type="checkbox" value="heart-racing" data-group="body-clues" /> ❤️ Heart beating fast</label>
+          <label class="chk"><input type="checkbox" value="hot-face" data-group="body-clues" /> 🌡️ Face feeling hot</label>
+          <label class="chk"><input type="checkbox" value="tight-chest" data-group="body-clues" /> 😤 Tight feeling in chest</label>
+          <label class="chk"><input type="checkbox" value="clenched-fists" data-group="body-clues" /> ✊ Hands making fists</label>
+          <label class="chk"><input type="checkbox" value="shaky" data-group="body-clues" /> 😬 Feeling shaky</label>
+          <label class="chk"><input type="checkbox" value="loud-voice" data-group="body-clues" /> 📢 Voice getting louder</label>
+          <label class="chk"><input type="checkbox" value="tummy" data-group="body-clues" /> 🫃 Stomach feeling tight</label>
+        </div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">Those Are My Clues →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 6 · Face & Hand Clues -->
+  <section id="screen-6" class="screen hidden" data-screen="6">
+    <div class="screen-inner">
+      <img src="assets/images/screen06.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Face Clues and Hand Clues</h2>
+        <p>Two places anger shows up first are your <strong>face</strong> and your <strong>hands</strong>.</p>
+        <div class="steps-list">
+          <div class="step"><span class="step-dot">😠</span><span>Eyebrows scrunch down and together</span></div>
+          <div class="step"><span class="step-dot">😬</span><span>Jaw tightens or teeth clench</span></div>
+          <div class="step"><span class="step-dot">✊</span><span>Hands curl into fists</span></div>
+          <div class="step"><span class="step-dot">💪</span><span>Arms tense up and feel stiff</span></div>
+        </div>
+        <p>When you feel these, your body is saying: <strong>"Anger is here."</strong></p>
+        <div class="tip-box">💡 Open your hands first. Open palms help your brain feel calmer.</div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">Good to Know →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 7 · Thought Clues -->
+  <section id="screen-7" class="screen hidden" data-screen="7">
+    <div class="screen-inner">
+      <img src="assets/images/screen07.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Thought Clues</h2>
+        <p>Anger also shows up in your <strong>thoughts</strong>. These fast, loud thoughts are called <em>hot thoughts</em> — and they're not always true.</p>
+        <ul class="bubble-list">
+          <li>"That's so unfair!"</li>
+          <li>"They always do this to me!"</li>
+          <li>"I can't take this anymore!"</li>
+          <li>"I'm going to explode!"</li>
+        </ul>
+        <p>Hot thoughts make the fire bigger. Noticing them is the first step to turning them down.</p>
+        <textarea class="journal" id="hot-thought" rows="2" placeholder="What's a hot thought you've had before?"></textarea>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I Noticed It →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 8 · The Pause Moment -->
+  <section id="screen-8" class="screen hidden" data-screen="8">
+    <div class="screen-inner">
+      <img src="assets/images/screen08.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>The Power of the Pause</h2>
+        <p>Here's a secret: there is always a tiny moment between feeling angry and doing something about it.</p>
+        <p>That moment is called <strong>the pause</strong>.</p>
+        <p>In the pause, you have a choice — let anger take the wheel, or take it back.</p>
+        <div class="storm-wrap">
+          <p class="storm-label">Alex's storm level right now:</p>
+          <div class="storm-track"><div class="storm-bar" id="storm-bar"></div></div>
+          <p class="storm-hint">Pretty high — but the pause helps bring it down.</p>
+        </div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">Show Me the Tools →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 9 · Name the Feeling -->
+  <section id="screen-9" class="screen hidden" data-screen="9">
+    <div class="screen-inner">
+      <img src="assets/images/screen09.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Name the Feeling</h2>
+        <p>Putting a name on a feeling helps calm the thinking part of your brain. Scientists call it <em>"name it to tame it."</em></p>
+        <p>What do you think Alex is feeling right now?</p>
+        <div class="choice-grid" id="cg-9">
+          <button class="choice-btn" onclick="pick(this,'alex-feeling','angry','9')">😠 Angry</button>
+          <button class="choice-btn" onclick="pick(this,'alex-feeling','frustrated','9')">😤 Frustrated</button>
+          <button class="choice-btn" onclick="pick(this,'alex-feeling','embarrassed','9')">😳 Embarrassed</button>
+          <button class="choice-btn" onclick="pick(this,'alex-feeling','hurt','9')">💔 Hurt</button>
+        </div>
+        <p style="margin-top:.5rem">What do <em>you</em> usually feel when you get upset?</p>
+        <textarea class="journal" id="my-feeling" rows="2" placeholder="I usually feel... when..."></textarea>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next hidden" id="next-9" onclick="goNext()">Named It →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 10 · Breathing -->
+  <section id="screen-10" class="screen hidden" data-screen="10">
+    <div class="screen-inner">
+      <img src="assets/images/screen10.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Tool 1 · The Big Breath</h2>
+        <p>The fastest way to turn down anger is to breathe slowly on purpose. It signals your body that you're safe.</p>
+        <div class="breath-wrap">
+          <div class="breath-circle" id="bc-10"></div>
+          <p class="breath-lbl" id="bl-10">Press Start</p>
+        </div>
+        <div class="btn-row"><button class="btn-secondary" onclick="doBreath('bc-10','bl-10')">Start Breathing</button></div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I Tried It →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 11 · Slow Exhale -->
+  <section id="screen-11" class="screen hidden" data-screen="11">
+    <div class="screen-inner">
+      <img src="assets/images/screen11.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Tool 2 · The Long Exhale</h2>
+        <p>Breathing <em>out</em> longer than you breathe <em>in</em> tells your brain to calm down faster. Try: breathe in for 4, breathe out slowly for 6.</p>
+        <div class="breath-wrap">
+          <div class="breath-circle" id="bc-11"></div>
+          <p class="breath-lbl" id="bl-11">Press Start</p>
+        </div>
+        <div class="btn-row"><button class="btn-secondary" onclick="doLongExhale('bc-11','bl-11')">Start</button></div>
+        <div class="tip-box">💡 Even one slow exhale can take the edge off anger.</div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">That Helped →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 12 · Count to Five -->
+  <section id="screen-12" class="screen hidden" data-screen="12">
+    <div class="screen-inner">
+      <img src="assets/images/screen12.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Tool 3 · Count to Five</h2>
+        <p>When anger spikes, your brain needs a few seconds to catch up. Tap each number slowly and breathe once between each:</p>
+        <div class="count-row">
+          <button class="count-btn" onclick="tapNum(this,1)">1</button>
+          <button class="count-btn" onclick="tapNum(this,2)">2</button>
+          <button class="count-btn" onclick="tapNum(this,3)">3</button>
+          <button class="count-btn" onclick="tapNum(this,4)">4</button>
+          <button class="count-btn" onclick="tapNum(this,5)">5</button>
+        </div>
+        <p class="count-msg hidden" id="count-done">Five steady moments — anger is already quieting.</p>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I Counted →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 13 · Step Away -->
+  <section id="screen-13" class="screen hidden" data-screen="13">
+    <div class="screen-inner">
+      <img src="assets/images/screen13.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Tool 4 · Step Away Safely</h2>
+        <p>Sometimes the best move is to <strong>calmly move your body away</strong> from what's making you angry — just for a few minutes. This isn't running away. It's a smart reset.</p>
+        <div class="steps-list">
+          <div class="step"><span class="step-num">1</span><span>Say calmly: "I need a minute."</span></div>
+          <div class="step"><span class="step-num">2</span><span>Walk to a quieter spot.</span></div>
+          <div class="step"><span class="step-num">3</span><span>Use one of your breathing tools.</span></div>
+          <div class="step"><span class="step-num">4</span><span>Come back when you feel steadier.</span></div>
+        </div>
+        <div class="tip-box">💡 Stepping away is brave, not weak. It protects you and the people around you.</div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">Smart Move →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 14 · Hot vs Cool Thoughts -->
+  <section id="screen-14" class="screen hidden" data-screen="14">
+    <div class="screen-inner">
+      <img src="assets/images/screen14.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Hot Thoughts vs Cool Thoughts</h2>
+        <p><strong>Hot thoughts</strong> pour fuel on anger. <strong>Cool thoughts</strong> help you think more clearly.</p>
+        <div class="swap-grid">
+          <div class="swap-from">"This is so unfair!"</div>
+          <div class="swap-arrow">→</div>
+          <div class="swap-to">"I don't like this, but I can handle it."</div>
+          <div class="swap-from">"They always do this!"</div>
+          <div class="swap-arrow">→</div>
+          <div class="swap-to">"This is one hard moment. It will pass."</div>
+          <div class="swap-from">"I'm going to lose it!"</div>
+          <div class="swap-arrow">→</div>
+          <div class="swap-to">"I can take a breath and slow down."</div>
+        </div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I See the Difference →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 15 · Safe Action -->
+  <section id="screen-15" class="screen hidden" data-screen="15">
+    <div class="screen-inner">
+      <img src="assets/images/screen15.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Choose a Safe Action</h2>
+        <p>After you pause and breathe, anger still needs somewhere to go — safely. Which of these work for you?</p>
+        <div class="check-grid">
+          <label class="chk"><input type="checkbox" value="walk-it-out" data-group="safe-actions" /> 🚶 Walk it out</label>
+          <label class="chk"><input type="checkbox" value="draw-it" data-group="safe-actions" /> 🎨 Draw how I feel</label>
+          <label class="chk"><input type="checkbox" value="squeeze-pillow" data-group="safe-actions" /> 🛋️ Squeeze a pillow</label>
+          <label class="chk"><input type="checkbox" value="write-it-down" data-group="safe-actions" /> ✏️ Write it down</label>
+          <label class="chk"><input type="checkbox" value="talk-to-someone" data-group="safe-actions" /> 🗣️ Talk to someone I trust</label>
+          <label class="chk"><input type="checkbox" value="splash-water" data-group="safe-actions" /> 💧 Splash cool water on my face</label>
+          <label class="chk"><input type="checkbox" value="move-body" data-group="safe-actions" /> 🏃 Jump or do jumping jacks</label>
+        </div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">These Are Mine →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 16 · Reflection -->
+  <section id="screen-16" class="screen hidden" data-screen="16">
+    <div class="screen-inner">
+      <img src="assets/images/screen16.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Quick Reflection</h2>
+        <p>Think of the last time you felt really angry. What happened?</p>
+        <textarea class="journal" id="angry-moment" rows="3" placeholder="Describe the situation briefly..."></textarea>
+        <p style="margin-top:.75rem">Which tool do you wish you'd had in that moment?</p>
+        <div class="choice-grid" id="cg-16">
+          <button class="choice-btn" onclick="pick(this,'wish-tool','big-breath','16')">Big Breath</button>
+          <button class="choice-btn" onclick="pick(this,'wish-tool','long-exhale','16')">Long Exhale</button>
+          <button class="choice-btn" onclick="pick(this,'wish-tool','count-five','16')">Count to Five</button>
+          <button class="choice-btn" onclick="pick(this,'wish-tool','step-away','16')">Step Away</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next hidden" id="next-16" onclick="goNext()">Reflection Done →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 17 · Second Story -->
+  <section id="screen-17" class="screen hidden" data-screen="17">
+    <div class="screen-inner">
+      <img src="assets/images/screen17.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Alex's Second Tough Moment</h2>
+        <p>After school, Alex is playing a board game with a sibling. The sibling accuses Alex of cheating — but Alex wasn't cheating at all.</p>
+        <p>Alex feels anger rising again. Face gets hot. Voice wants to shout.</p>
+        <p>But this time, Alex remembers something from earlier today... What do you think it was?</p>
+        <div class="choice-grid" id="cg-17">
+          <button class="choice-btn" onclick="pick(this,'alex-remembers','pause','17')">The pause</button>
+          <button class="choice-btn" onclick="pick(this,'alex-remembers','breathing','17')">The breathing tool</button>
+          <button class="choice-btn" onclick="pick(this,'alex-remembers','cool-thought','17')">A cool thought</button>
+          <button class="choice-btn" onclick="pick(this,'alex-remembers','step-away','17')">To step away</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next hidden" id="next-17" onclick="goNext()">Let's See →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 18 · Decision Moment -->
+  <section id="screen-18" class="screen hidden" data-screen="18">
+    <div class="screen-inner">
+      <img src="assets/images/screen18.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>What Could Alex Do Next?</h2>
+        <p>Alex has a few choices. Which one is best?</p>
+        <div class="choice-grid col-1" id="cg-18">
+          <button class="choice-btn" onclick="pick(this,'alex-choice','yell','18')">😠 Yell back at the sibling</button>
+          <button class="choice-btn" onclick="pick(this,'alex-choice','calm-breath','18')">😤 Take a slow breath and say "That's not true" calmly</button>
+          <button class="choice-btn" onclick="pick(this,'alex-choice','storm-off','18')">🚪 Storm off and slam the door</button>
+          <button class="choice-btn" onclick="pick(this,'alex-choice','quiet-moment','18')">🪑 Say "I need a minute" and step away</button>
+        </div>
+        <div class="feedback-box hidden" id="fb-18"></div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next hidden" id="next-18" onclick="goNext()">I Chose →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 19 · Repair Conversation -->
+  <section id="screen-19" class="screen hidden" data-screen="19">
+    <div class="screen-inner">
+      <img src="assets/images/screen19.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>The Best Choice</h2>
+        <p>The two best choices for Alex were: <strong>taking a slow breath and responding calmly</strong>, or <strong>stepping away to reset</strong>.</p>
+        <p>Both protect Alex's feelings <em>and</em> the relationship with the sibling.</p>
+        <p>Choices that feel satisfying in the moment — yelling, storming off — usually make things worse and feel bad afterward.</p>
+        <p>It's hard to pick the calm choice when you're really upset. But every time you practice, it gets easier.</p>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I Understand →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 20 · Reset Steps -->
+  <section id="screen-20" class="screen hidden" data-screen="20">
+    <div class="screen-inner">
+      <img src="assets/images/screen20.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>The Reset Sequence</h2>
+        <p>Here's a simple sequence you can use anytime anger starts to build:</p>
+        <div class="steps-list">
+          <div class="step"><span class="step-num">1</span><span><strong>Notice</strong> — body clues, face clues, hot thoughts</span></div>
+          <div class="step"><span class="step-num">2</span><span><strong>Pause</strong> — find that tiny moment of choice</span></div>
+          <div class="step"><span class="step-num">3</span><span><strong>Breathe</strong> — one slow breath in, longer breath out</span></div>
+          <div class="step"><span class="step-num">4</span><span><strong>Name it</strong> — say to yourself what you're feeling</span></div>
+          <div class="step"><span class="step-num">5</span><span><strong>Choose</strong> — pick a safe action and take it</span></div>
+        </div>
+        <div class="tip-box">💡 Notice. Pause. Breathe. Name it. Choose.</div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I'll Remember That →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 21 · Shake-Out Reset -->
+  <section id="screen-21" class="screen hidden" data-screen="21">
+    <div class="screen-inner">
+      <img src="assets/images/screen21.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Tool 5 · The Body Shake-Out</h2>
+        <p>Anger stores as tension in your muscles. Shaking it out is fast and safe. Do this with me right now:</p>
+        <ul class="icon-list">
+          <li>🤲 Shake your hands hard for 5 seconds</li>
+          <li>💪 Let your arms go floppy and shake them</li>
+          <li>🦵 Stomp your feet three times on the floor</li>
+          <li>🐕 Give your whole body a big shake</li>
+          <li>😮‍💨 Blow out all the air in one big whoosh</li>
+        </ul>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I Shook It Out →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 22 · Muscle Relax -->
+  <section id="screen-22" class="screen hidden" data-screen="22">
+    <div class="screen-inner">
+      <img src="assets/images/screen22.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Tool 6 · Squeeze and Let Go</h2>
+        <p>This tool helps you notice and release tension. Follow along:</p>
+        <div class="steps-list">
+          <div class="step"><span class="step-dot">✊</span><span>Squeeze your hands into fists — hold 3 seconds — let go</span></div>
+          <div class="step"><span class="step-dot">💪</span><span>Squeeze your arms tight to your sides — hold 3 seconds — let go</span></div>
+          <div class="step"><span class="step-dot">😬</span><span>Scrunch your face — hold 3 seconds — let go</span></div>
+          <div class="step"><span class="step-dot">🦶</span><span>Curl your toes — hold 3 seconds — let go</span></div>
+        </div>
+        <p>Notice how much softer your body feels after each squeeze-and-release!</p>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">Squeeze Done →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 23 · Ask for Help -->
+  <section id="screen-23" class="screen hidden" data-screen="23">
+    <div class="screen-inner">
+      <img src="assets/images/screen23.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Tool 7 · Ask for Help</h2>
+        <p>Sometimes anger is too big to handle alone. Asking for help is one of the bravest things you can do. It's okay to say:</p>
+        <ul class="bubble-list">
+          <li>"I'm really upset and I need help."</li>
+          <li>"Can you sit with me for a minute?"</li>
+          <li>"I don't know how to handle this."</li>
+        </ul>
+        <p>Who in your life is safe to go to when you're really upset?</p>
+        <textarea class="journal" id="safe-helper" rows="2" placeholder="I can ask for help from..."></textarea>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I Know Who to Ask →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 24 · Repair After Anger -->
+  <section id="screen-24" class="screen hidden" data-screen="24">
+    <div class="screen-inner">
+      <img src="assets/images/screen24.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>After Anger Passes</h2>
+        <p>Sometimes when we're angry we say or do things we don't mean. That's human. Once you've calmed down, it's important to make things right.</p>
+        <div class="steps-list">
+          <div class="step"><span class="step-num">1</span><span>Wait until you're truly calm — not still hot.</span></div>
+          <div class="step"><span class="step-num">2</span><span>Say honestly: "I got angry and I said something unkind."</span></div>
+          <div class="step"><span class="step-num">3</span><span>Apologize if you hurt someone.</span></div>
+          <div class="step"><span class="step-num">4</span><span>Ask what you can do to make it better.</span></div>
+        </div>
+        <div class="tip-box">💡 Making things right is a sign of real strength.</div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I Can Do That →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 25 · My Calm Plan -->
+  <section id="screen-25" class="screen hidden" data-screen="25">
+    <div class="screen-inner">
+      <img src="assets/images/screen25.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>My Calm Plan</h2>
+        <p>A Calm Plan is your personal game plan for the next time anger shows up. Fill it in:</p>
+        <label class="field-label">When I notice anger, my first body clue is:</label>
+        <input class="journal-line" id="plan-clue" placeholder="e.g. my hands start to clench" />
+        <label class="field-label" style="margin-top:.65rem">My first go-to calming tool is:</label>
+        <input class="journal-line" id="plan-tool" placeholder="e.g. the long exhale" />
+        <label class="field-label" style="margin-top:.65rem">My safe action after breathing is:</label>
+        <input class="journal-line" id="plan-action" placeholder="e.g. walk around the block" />
+        <label class="field-label" style="margin-top:.65rem">If I need help, I will go to:</label>
+        <input class="journal-line" id="plan-helper" placeholder="person's name or role" />
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">My Plan Is Ready →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 26 · My Safe Helpers -->
+  <section id="screen-26" class="screen hidden" data-screen="26">
+    <div class="screen-inner">
+      <img src="assets/images/screen26.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>My Safe Helpers</h2>
+        <p>It helps to know ahead of time who is in your corner. List the people you trust when anger gets big:</p>
+        <input class="journal-line" id="helper-1" placeholder="1. Name or relationship (e.g. Mom, my teacher)" />
+        <input class="journal-line" id="helper-2" placeholder="2. Name or relationship" style="margin-top:.5rem" />
+        <input class="journal-line" id="helper-3" placeholder="3. Name or relationship" style="margin-top:.5rem" />
+        <div class="tip-box" style="margin-top:.75rem">💡 You don't have to face hard feelings alone. That's what helpers are for.</div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I've Got Helpers →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 27 · Tools Review -->
+  <section id="screen-27" class="screen hidden" data-screen="27">
+    <div class="screen-inner">
+      <img src="assets/images/screen27.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>Your Storm-Calming Toolkit</h2>
+        <p>Look at everything you've learned! Here's your full toolkit:</p>
+        <ul class="icon-list tight">
+          <li>🔍 Notice body clues and hot thoughts</li>
+          <li>⏸️ Find the pause — that tiny moment of choice</li>
+          <li>💨 The Big Breath</li>
+          <li>🌬️ The Long Exhale</li>
+          <li>🔢 Count to Five</li>
+          <li>🚶 Step Away Safely</li>
+          <li>🧊 Swap hot thoughts for cool thoughts</li>
+          <li>🤝 Choose a safe action</li>
+          <li>🐕 The Body Shake-Out</li>
+          <li>✊ Squeeze and Let Go</li>
+          <li>💬 Ask for Help</li>
+          <li>💛 Make things right after</li>
+        </ul>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">I've Got My Toolkit →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 28 · Victory -->
+  <section id="screen-28" class="screen hidden" data-screen="28">
+    <div class="screen-inner">
+      <img src="assets/images/screen28.webp" alt="" class="screen-img" />
+      <div class="card">
+        <h2>You Did It — Celebrate!</h2>
+        <p>You just worked through the whole <strong>Calm the Storm</strong> lab. That's a big deal.</p>
+        <p>You showed up. You learned hard things. You thought about your own feelings with real courage.</p>
+        <p>Let's take one final celebration breath together:</p>
+        <div class="breath-wrap">
+          <div class="breath-circle" id="bc-28"></div>
+          <p class="breath-lbl" id="bl-28">Press to Celebrate</p>
+        </div>
+        <div class="btn-row"><button class="btn-secondary" onclick="doBreath('bc-28','bl-28')">Celebrate!</button></div>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">Onward →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 29 · Conversation with Adult -->
+  <section id="screen-29" class="screen hidden" data-screen="29">
+    <div class="screen-inner">
+      <img src="assets/images/screen29.webp" alt="" class="screen-img" />
+      <div class="card parent-card">
+        <h2>For Parents &amp; Caregivers</h2>
+        <p>Your child just completed <strong>Calm the Storm</strong> — an anger-regulation program by Brave Feelings Lab.</p>
+        <p><strong>How to follow up:</strong></p>
+        <ul class="icon-list">
+          <li>Ask them to show you their Calm Plan and discuss it together.</li>
+          <li>Ask which calming tools they want to try first next time anger comes up.</li>
+          <li>Practice the Big Breath or Body Shake-Out together so it becomes familiar.</li>
+          <li>Name it when you see them use a tool: "I noticed you took a breath — that was really mature."</li>
+        </ul>
+        <p><strong>If anger is frequent or intense:</strong> Consider speaking with your child's school counselor or a licensed therapist. This program is a supportive tool, not a replacement for professional support.</p>
+        <div class="nav-row">
+          <button class="btn-back" onclick="goBack()">← Back</button>
+          <button class="btn-next" onclick="goNext()">Continue →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 30 · Completion Certificate -->
+  <section id="screen-30" class="screen hidden" data-screen="30">
+    <div class="screen-inner">
+      <img src="assets/images/screen30.webp" alt="" class="screen-img" />
+      <div class="card cert-card">
+        <div class="cert-icon">⛅</div>
+        <h2 class="cert-heading">Storm Calmer Certificate</h2>
+        <p class="cert-line-sm">This certifies that</p>
+        <p class="cert-name" id="cert-name-display">Storm Calmer</p>
+        <p class="cert-line-sm">has completed</p>
+        <p class="cert-program">Calm the Storm</p>
+        <p class="cert-subtitle">An Anger Reset Lab for Kids</p>
+        <p class="cert-brand">Brave Feelings Lab &nbsp;·&nbsp; Benne Hart</p>
+        <hr class="cert-divider" />
+        <p class="cert-quote">You are stronger than any storm.</p>
+        <div class="cert-name-input-wrap">
+          <label class="field-label" style="text-align:center;display:block">Your name for the certificate:</label>
+          <input class="journal-line" id="cert-name-input" placeholder="Type your name..." style="text-align:center;font-size:1.1rem;margin-top:.4rem" oninput="setCertName(this.value)" />
+        </div>
+        <div class="cert-actions">
+          <button class="btn-primary" onclick="window.print()">🖨 Print Certificate</button>
+          <button class="btn-secondary" onclick="restartProgram()">Start Again</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /app -->
+<script src="script.js?v=3"></script>
+</body>
+</html>
